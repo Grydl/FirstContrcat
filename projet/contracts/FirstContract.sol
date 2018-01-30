@@ -13,7 +13,7 @@ contract FirstContract {
 
   /**
    * @dev Fallback function qui permet de recevoir les Ethers
-   * <msg.value> permet de retrouver la valeur d'Ether reçu 
+   * <msg.value> permet de retrouver la valeur d'Ether reçue 
    * C'est cette fonction qui est appelée lorsque l'utilisateur envoie des Ethers aux
    * Smart Contract sans appeler aucune fonction
    */
@@ -22,7 +22,7 @@ contract FirstContract {
    }
 
   /**
-   * Méthode permattant d'affeter une valeur à la variable <solde> 
+   * Méthode permattant d'affecter une valeur à la variable <solde> 
    * Nous pouvons ainsi affecter la valeur de l'Ether reçue à la variable <solde>
    */
    function setEther (uint valeur) public payable {
@@ -42,6 +42,5 @@ contract FirstContract {
     */
    function getTotal() public constant returns (uint) {
        return this.balance;
-   }
-    
+   }    
 }
