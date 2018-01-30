@@ -1,4 +1,4 @@
-**Développez votre premier**  **Smart Contract Ethereum**
+**Développez votre premier Smart Contract Ethereum**  **DRAFT**
 
 Dans ce guide, je vous propose de découvrir la programmation de _Smart Contract Ethereum_.
 
