@@ -1,6 +1,7 @@
 # Développez votre premier Smart Contract Ethereum
 
 Dans ce guide, je vous propose de découvrir la programmation de *Smart Contract Ethereum*.
+
 *Ethereum*, en plus de permettre le transfert d'argent via des Ethers,  est aussi adapté au développement d'applications décentralisées ou *DApps*.
 
 Développer des applications décentralisées *DApps* revient à développer des *Smart Contracts* ou «contrats intelligents».
@@ -9,7 +10,7 @@ Il existe aujourd'hui un écosystème de développement de *Dapps* avec des lang
 
 Nous allons utiliser le framework [Truffle](http://truffleframework.com/) qui fournit un certain nombre de composants nécessaires au développement de *Smart Contract*.
 
-Nous utiliserons l'IDE [Visual Studio](https://www.visualstudio.com/fr/) avec l'extension Solidity (pour la coloration syntaxique et l'auto-complétion.
+Nous utiliserons l'IDE [Visual Studio](https://www.visualstudio.com/fr/) avec l'extension Solidity (pour la coloration syntaxique et l'auto-complétion).
 
 Vous aurez également besoin de Docker sur votre machine, tous les composants (nodejs, Truffle) nécessaires au développement de votre *Smart Contract* étant packagés dans un container docker que vous trouvez sur dockerHub : [grydl/truffle](https://hub.docker.com/r/grydl/truffle/)
 
@@ -40,9 +41,11 @@ mkdir  projet
 
 ![Terminal Vidual Studio](./image/2_terminal.png)
 
-Vous aurez ainsi accès au Framework de développement Truffle. Ce Framework est fourni dans un container Docker **grydl/truffle****.
-*Vous n'avez donc pas à installer Truffle, nodejs, et npm sur votre ordinateur.*
-N'oubliez pas de remplacer la partie **XXXXX** par le chemin absolu jusqu'à votre répertoire **projet**.
+Vous aurez ainsi accès au Framework de développement Truffle. Ce Framework est fourni dans un container Docker **grydl/truffle**.
+
+*Vous n'avez donc pas à installer Truffle et nodejs sur votre ordinateur.*
+
+#### N'oubliez pas de remplacer la partie **XXXXX** par le chemin absolu de votre répertoire **projet**.
 
 * Exécutez la commande ci-dessous pour démarrer le container Docker grydl/truffle .
 
@@ -66,6 +69,7 @@ root@c8f63734ebe9:/#
 
 ```bash
 root@c8f63734ebe9:/# truffle version
+
 Truffle v4.0.5 (core: 4.0.5)
 Solidity v0.4.18 (solc-js)
 ```
@@ -77,10 +81,11 @@ root@00c19832604b:/# cd projet/
 root@00c19832604b:/projet#
 ```
 
-* Initialisez le projet du _Smart Contract_. Cette commande ci-dessous va créer la structure de votre projet.
+* Initialisez le projet du *Smart Contract*. La commande ci-dessous va créer la structure de votre projet.
 
 ```bash
 root@00c19832604b:/projet# truffle init
+
 Downloading...
 Unpacking...
 Setting up...
@@ -99,7 +104,7 @@ Commands:
 
 ![Structure du projet](./image/10_structure-file.png)
 
-Nous allons créer dans le répertoire **«contracts** le fichier *FirstContract.sol* (*Smart Contract*) ayant 4 méthodes permettant de :
+Nous allons créer dans le répertoire **contracts** le fichier *FirstContract.sol* (*Smart Contract*) ayant 4 méthodes permettant de :
 
 1. Recevoir les Ethers
 2. Stocker la valeur
@@ -158,7 +163,7 @@ contract FirstContract {
 }
 ```
 
-* Créez ensuite dans le répertoire  **migrations** le fichier   **2_deploy_contracts.js**
+* Créez ensuite dans le répertoire  **migrations** le fichier **2_deploy_contracts.js**
 
 Ce fichier permet de déployer le *Smart Contract* **FirstContract.sol** que nous venons de créer.
 
@@ -167,7 +172,7 @@ Notez que le fichier est préfixé par le nombre 2 (c'est-à-dire qu'il ne faudr
 * Copiez le contenu ci-dessous dans le fichier **2_deploy_contracts.js**
 
 ```javascript
-varFirstContract = artifacts.require("FirstContract");
+var FirstContract = artifacts.require("FirstContract");
 
 module.exports = function(deployer) {
  deployer.deploy(FirstContract);
@@ -178,6 +183,7 @@ module.exports = function(deployer) {
 
 ```bash
 root@f64cdc2b42ac:/projet# truffle compile
+
 Compiling ./contracts/FirstContract.sol...
 Compiling ./contracts/Migrations.sol...
 Writing artifacts to ./build/contracts
@@ -236,7 +242,6 @@ truffle(develop)> migrate
 Using network 'develop'.
 
 Running migration: 1_initial_migration.js
-
   Deploying Migrations...
   ... 0xcfd53e5ee5219a018e925dfd349aabdae71c639826fbcd0616cea9b5bb2d545d
   Migrations: 0x8cdaf0cd259887258bc13a92c0a6da92698644c0
@@ -246,7 +251,7 @@ Saving artifacts...
 Running migration: 2_deploy_contracts.js
   Deploying FirstContract...
   ... 0xa8907291a6cd160dd459a0447e0f0bac628bea9f7f706605575a5f4f253918d4
-  FirstContract: **0x345ca3e014aaf5dca488057592ee47305d9b3e10**
+  FirstContract: 0x345ca3e014aaf5dca488057592ee47305d9b3e10
 Saving successful migration to network...
   ... 0xf36163615f41ef7ed8f4a8f192149a0bf633fe1a2398ce001bf44c43dc7bdda0
 Saving artifacts...
@@ -297,8 +302,11 @@ truffle(develop)> web3.fromWei(web3.eth.getBalance(accounts[0])).toNumber()
 
 ```javascript
 truffle(develop)> web3.eth.sendTransaction({ from:accounts[0], to: FirstContract.address, value: web3.toWei("7.0","ether")})
+
 '0xf54822094609330bf9fc618f93c5169e897ba03f042b55cd4e1324ea4cea47a0'
 ```
+
+**0xf54822094609330bf9fc618f93c5169e897ba03f042b55cd4e1324ea4cea47a0** represente l'identifiant de la transaction.
 
 * Consultez ensuite la *balance* du compte **accounts[0]** pour voir si le solde restant est bien 92.95 Ethers (99.95 – 7).
 
@@ -344,9 +352,10 @@ Pour ceux qui veulent allez plus loin :
 
 * La documentation de Truffle : [http://truffleframework.com/docs/](http://truffleframework.com/docs/)
 * La documentation d'Ethereum : [http://www.ethdocs.org/en/latest/](http://www.ethdocs.org/en/latest/)
-* La documentation du langage Solidity : [Solidity](http://solidity.readthedocs.io/en/latest/)
+* La documentation du langage Solidity : [http://solidity.readthedocs.io/en/latest/](http://solidity.readthedocs.io/en/latest/)
 * Le code source du projet   :  [FirstContrcat](https://github.com/Grydl/FirstContrcat.git)
 
 Merci, n'hésitez à partager et à m'écrire si jamais vous rencontrez des problèmes.
 
-Grydl Analytics contact[at]grydl.com
+## [Grydl Analytics](http://www.grydl.com)
+contact [at] grydl.com
