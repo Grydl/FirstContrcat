@@ -1,4 +1,4 @@
-# Développez votre premier Smart Contract Ethereum  (DRAFT)
+# Développez votre premier Smart Contract Ethereum
 
 Dans ce guide, je vous propose de découvrir la programmation de *Smart Contract Ethereum*.
 *Ethereum*, en plus de permettre le transfert d'argent via des Ethers,  est aussi adapté au développement d'applications décentralisées ou *DApps*.
